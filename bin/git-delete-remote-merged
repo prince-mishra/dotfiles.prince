@@ -1,0 +1,15 @@
+#!/bin/bash
+
+remote='origin'
+echo "Will delete the following branches from [$remote]:"
+branches=`git branch -r --merged master | grep -v '\*\|master\|unstable\|develop'`
+
+echo ''
+printf '%s\n' "$branches"
+# echo $branches
+echo ''
+read -p "Delete merged remote branches from '$remote'? Press enter to continue"
+echo ''
+echo 'Safely deleting merged remote branches...'
+
+echo $branches | sed -e "s:$remote/::g" | xargs -t git push $remote -d
