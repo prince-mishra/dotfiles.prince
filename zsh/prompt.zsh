@@ -50,8 +50,10 @@ need_push () {
   fi
 }
 
+absolute_path=${pwd}
+
 directory_name() {
-  echo "%{$fg_bold[cyan]%}%1/%\/%{$reset_color%}"
+  echo "%{$fg_bold[cyan]%}%${absolute_path}/%\/%{$reset_color%}"
 }
 
 battery_status() {
