@@ -152,5 +152,7 @@ then
   fi
 fi
 
+./check-zsh
+
 echo ''
 echo '  All installed!'

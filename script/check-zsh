@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+if [ "$SHELL" = "/bin/zsh" ]; then 
+  echo 'Success, zsh is already default terminal!'
+  exit 0
+fi;
+
+if ! [ -x "$(which zsh)" ]; then
+  echo "Problem, zsh not found! install using the following command"  
+  echo ''
+  echo 'sudo apt install zsh'
+  echo ''
+else 
+  echo "Success, zsh is installed"
+fi
+
+echo 'Problem, run the following command to set zsh as default shell'
+echo ''
+echo 'sudo chsh -s /bin/zsh'
