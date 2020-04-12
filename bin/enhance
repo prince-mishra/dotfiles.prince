@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# script from https://github.com/alexjc/neural-enhance
+docker run --rm -v "$(pwd)/`dirname ${@:$#}`":/ne/input -it alexjc/neural-enhance ${@:1:$#-1} "input/`basename ${@:$#}`";
