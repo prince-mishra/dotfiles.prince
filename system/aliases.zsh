@@ -66,3 +66,6 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 
 alias o='xdg-open'
 alias files='nautilus'
+dos2unixd() {
+  find $1 -type f -print0 | xargs -0 dos2unix
+}
