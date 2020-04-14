@@ -69,3 +69,5 @@ alias files='nautilus'
 dos2unixd() {
   find $1 -type f -print0 | xargs -0 dos2unix
 }
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
