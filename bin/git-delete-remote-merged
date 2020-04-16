@@ -3,6 +3,7 @@
 remote='origin'
 echo "Will delete the following branches from [$remote]:"
 branches=`git branch -r --merged master | grep -v '\*\|master\|unstable\|develop'`
+[ -z "$branches" ] && printf '\nNo merged branches to delete...\n' && exit;
 
 echo ''
 printf '%s\n' "$branches"
