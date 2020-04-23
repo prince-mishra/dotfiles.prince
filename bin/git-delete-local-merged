@@ -7,5 +7,16 @@
 
 branches=`git branch --merged master | grep -v '\*\|master\|unstable\|develop'`
 [ -z "$branches" ] && printf '\nNo merged branches to delete...\n' && exit;
+command="git branch -d $branches"
 
-echo $branches | tr -d '\n'`
+echo ''
+printf '%s\n' "$branches"
+echo ''
+printf 'Delete merged branches locally? Press [Enter] to continue...'
+read _
+
+echo ''
+echo 'Safely deleting merged local branches...'
+echo ''
+
+`$command`

@@ -7,9 +7,9 @@ branches=`git branch -r --merged master | grep -v '\*\|master\|unstable\|develop
 
 echo ''
 printf '%s\n' "$branches"
-# echo $branches
 echo ''
-read -p "Delete merged remote branches from '$remote'? Press enter to continue"
+printf 'Delete merged remote branches from '$remote'? Press [Enter] to continue'
+read _
 echo ''
 echo 'Safely deleting merged remote branches...'
 
