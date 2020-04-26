@@ -1,4 +1,19 @@
-# holman does dotfiles
+# Ben's Dotfiles
+
+It's been a big productivity improvement to have my own little scripts which make things easier in my system. Thanks to [Zach Holman](https://github.com/holman/dotfiles) for releasing his forkable dotfiles!
+
+I sync this repo accross all my computer's which all run:
+
+- Ubuntu 19.10 (64bit)
+- The ZSH shell
+
+```sh
+git clone https://github.com/benwinding/dotfiles.git ~/.dotfiles
+cd ~/.dotfiles
+script/bootstrap
+```
+
+# (original README) holman does dotfiles
 
 Your dotfiles are how you personalize your system. These are mine.
 
