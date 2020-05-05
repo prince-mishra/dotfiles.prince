@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Delete all local branches that have been merged into HEAD. Stolen from
 # our favorite @tekkub:

@@ -71,3 +71,10 @@ dos2unixd() {
 }
 alias pbcopy='xclip -selection clipboard'
 alias pbpaste='xclip -selection clipboard -o'
+
+# Clones git repo and cd's into it
+gclonecd() {
+  git_dir="$(basename "$1" .git)"
+  git_dir_resolved=${2:-$git_dir}
+  git clone "$@" && cd "$git_dir_resolved";
+}
