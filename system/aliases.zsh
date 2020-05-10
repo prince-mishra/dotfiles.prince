@@ -78,3 +78,8 @@ gclonecd() {
   git_dir_resolved=${2:-$git_dir}
   git clone "$@" && cd "$git_dir_resolved";
 }
+# Clones git repo and cd's into it
+killport() {
+  echo "Killing process on port: $1"
+  fuser -n tcp -k $1;
+}
