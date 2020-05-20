@@ -23,6 +23,7 @@ updateDotFiles() {
 	echo "Updating dotfiles..."
 	cd $ZSH
 	git pull
+	dos2unixd .
 }
 
 while test $# -gt 0; do
