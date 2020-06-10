@@ -17,6 +17,6 @@ read _
 
 echo ''
 echo 'Safely deleting merged local branches...'
-echo ''
+echo 'Running command: '$command
 
 `$command`
