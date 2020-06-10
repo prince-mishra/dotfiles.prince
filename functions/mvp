@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+function mvp () {
+    source="$1"
+    target="$2"
+    target_dir="$(dirname "$target")"
+    mkdir --parents $target_dir; mv $source $target
+}
