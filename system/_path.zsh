@@ -4,3 +4,4 @@ export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/anaconda3/bin
 export PATH=$PATH:~/programs
 export PATH=$PATH:~/packages
+export PATH=$PATH:~/linuxbrew/.linuxbrew/bin
