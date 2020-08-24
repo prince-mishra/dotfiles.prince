@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+# Unzip to dir of same name
+
+function unzipd () {
+    zipfile_path=$(basename -- "$1")
+    zipdir="${zipfile_path%.*}"
+    cmd="unzip "$1" -d "$zipdir""
+    echo "Running: " $cmd 
+    eval $cmd
+}
