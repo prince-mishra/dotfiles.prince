@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+# Browser sync a specific directory
+bs() {
+  browser-sync $1 -w
+}
