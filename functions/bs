@@ -2,5 +2,5 @@
 
 # Browser sync a specific directory
 bs() {
-  browser-sync $1 -w
+  browser-sync ./$1 -w
 }
