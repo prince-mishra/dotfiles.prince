@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# Check apt package is installed
+PACKAGE="$1"
+printf "checking has apt dep: "$PACKAGE" \n"
+
+if [[ $(apt -qq list $PACKAGE 2>/dev/null)  ]]; then
+  printf "  -> successfully found!\n"
+else
+  printf "$PACKAGE is NOT installed!\n"
+  printf "\nplease run: \n\n apt install $PACKAGE\n"
+  exit 1
+fi
