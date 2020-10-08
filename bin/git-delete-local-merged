@@ -19,4 +19,4 @@ echo ''
 echo 'Safely deleting merged local branches...'
 echo 'Running command: '$command
 
-`$command`
+eval $command
