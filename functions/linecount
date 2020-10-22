@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+# Counts lines of text in files
+
+# linecount ./src/**/*.ts
+
+linecount() {
+  echo "=== Counting lines with extension (*$1)"
+  find . -name '*'$1  | xargs wc -l;
+}
