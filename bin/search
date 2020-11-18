@@ -2,11 +2,10 @@
 #
 # Quick search in a directory for a string ($@).
 #
-set -e
 
-# use -iru to search directories ack usually ignores (like .git)
-if [ -x /usr/bin/ack-grep ]; then
-    ack-grep -i "$@"
-else
-    ack -i "$@"
-fi
+set -e
+SEARCH_PHRASE=$@
+cmd="grep -rnw "$PWD" -e $SEARCH_PHRASE"
+echo Running: $cmd
+
+grep -rnw "$PWD" -e $SEARCH_PHRASE
