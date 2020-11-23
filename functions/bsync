@@ -2,5 +2,5 @@
 
 # Browser sync a specific directory
 bsync() {
-  browser-sync ./$1 -w
+  browser-sync ./$1 -w $2 $3 $4
 }
