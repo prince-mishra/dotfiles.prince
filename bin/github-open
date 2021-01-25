@@ -5,9 +5,11 @@
 remotes = `git remote`
 hasNoRemotes = remotes.size < 2
 if hasNoRemotes then 
+  print("No git remote found, please set 'origin' remote");
   return
 end
 repolink = `git remote get-url origin`
+print("     Found link: " + repolink);
 if repolink.include?("git@github.com:") then 
   # Converts from ssh format to https format if necessary
 
@@ -15,5 +17,6 @@ if repolink.include?("git@github.com:") then
   # https://github.com/benwinding/dotfiles
   repolink = repolink.gsub("git@github.com:", "https://github.com/")
 end
+print("Opening webpage: " + repolink);
 
 `xdg-open #{repolink}`
