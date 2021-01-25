@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+# Compresses video simply using ffmpeg
+
+print("""
+--- compressing using ffmpeg, with settings:
+
+ffmpeg -i INPUT.mp4 -vcodec libx265 -crf 28 OUTPUT.mp4
+  
+---
+""")
+
+hasNoArgs = ARGV.size < 1
+if hasNoArgs then 
+  print("""no input file given, please use like this:
+ffcompress INPUT_FILE
+""")
+  return
+end
+inputFile = ARGV[0]
+outputFile = ARGV[1] || (inputFile + '.compressed.mp4')
+
+cmd = "ffmpeg -i #{inputFile} -vcodec libx265 -crf 28 #{outputFile}"
+print("""--- Running command:
+#{cmd}
+---
+""");
+`#{cmd}`;
