@@ -2,5 +2,7 @@
 
 # Browser sync a specific directory
 bsync() {
-  browser-sync ./$1 -w $2 $3 $4
+  cmd="browser-sync "./$1" -w --directory --port $PORT"
+  echo $cmd
+  eval $cmd
 }
