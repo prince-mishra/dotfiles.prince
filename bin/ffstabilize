@@ -1,0 +1,36 @@
+#!/usr/bin/env ruby
+
+# Compresses video simply using ffmpeg
+
+print("""
+--- stabilize using ffmpeg, with settings:
+
+ffmpeg -i INPUT.mp4 -vcodec libx265 -crf 28 OUTPUT.mp4
+  
+---
+""")
+
+hasNoArgs = ARGV.size < 1
+if hasNoArgs then 
+  print("""no input file given, please use like this:
+ffstabilize INPUT_FILE
+""")
+  return
+end
+inputFile = ARGV[0]
+inputFileTempTransforms = ARGV[0] + '.TEMP.trf'
+outputFile = ARGV[1] || (inputFile + '.stabilized.mp4')
+
+cmd1 = "ffmpeg -i #{inputFile} -vf vidstabdetect=stepsize=2:shakiness=270:accuracy=100:result=#{inputFileTempTransforms} -f null -"
+cmd2 = "ffmpeg -y -i #{inputFile} -vf vidstabtransform=input=#{inputFileTempTransforms}:zoom=0:smoothing=40,unsharp=5:5:0.8:3:3:0.4 -vcodec libx264 -tune film -acodec copy -preset slow #{outputFile}"
+
+def RunCommand(cmd)
+  print("""--- Running command:
+  #{cmd}
+  ---
+  """)
+  `#{cmd}`  
+end
+
+RunCommand(cmd1)
+RunCommand(cmd2)
