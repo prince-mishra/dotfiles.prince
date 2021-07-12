@@ -68,7 +68,15 @@ battery_status() {
   fi
 }
 
-export PROMPT=$'\n$(battery_status)in $(directory_name) $(git_dirty)$(need_push)\n› '
+git_stat() {
+  LARGE_REPO="org-2562356@github.com:Canva/canva.git"
+  if [[ "$(git remote get-url origin 2> /dev/null)" != "$LARGE_REPO" ]]
+  then
+    echo "$(git_dirty)$(need_push)"
+  fi
+}
+
+export PROMPT=$'\n$(battery_status)in $(directory_name) $(git_stat)\n› '
 set_prompt () {
   export RPROMPT="%{$fg_bold[cyan]%}%{$reset_color%}"
 }
