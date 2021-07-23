@@ -1,0 +1,44 @@
+#!/bin/sh
+
+initial_folder="$1"
+RED='\033[0;31m'
+
+if [ ! -z "$initial_folder" ]; then
+    echo ""
+else
+    printf "${RED} Needs folder path!\n"
+    exit 1
+fi
+
+width=$MAX_WIDTH
+
+if [ ! -z "$width" ]; then 
+    echo ""
+else
+    width="900"
+fi
+
+echo "Using Directory: $initial_folder"
+echo "Using max_width: $width (change by using \$MAX_WIDTH=500)"
+
+resized_folder_name="_resized"
+
+all_images=$(find -E $initial_folder -iregex ".*\.(jpg|gif|png|jpeg)")
+
+while read -r image_full_path; do
+    filename=$(basename "$image_full_path");
+    source_folder=$(dirname "$image_full_path");
+
+    destination_folder=$source_folder"/"$resized_folder_name"/";
+    destination_full_path=$destination_folder$filename;
+
+    if [ "$(basename "$source_folder")" = "$resized_folder_name" ]; then 
+        continue
+    fi
+
+    echo "Shrinking: \"$image_full_path\""
+    mkdir "$destination_folder" 2>/dev/null
+
+    convert -resize "$width"x"$width"\> "$image_full_path" "$destination_full_path"
+
+done <<< "$all_images"
