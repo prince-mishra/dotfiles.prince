@@ -72,3 +72,6 @@ alias ctrlc='pbcopy'
 alias ctrlv='pbpaste'
 alias ys='yarn start'
 alias yys='yarn && yarn start'
+
+# work specific
+alias check="yarn lint:deps:fix && yarn lint:ts:changed:fix && unvar && yarn lint:css" 
