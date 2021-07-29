@@ -19,4 +19,12 @@ if repolink.include?("git@github.com:") then
 end
 print("Opening webpage: " + repolink);
 
-`xdg-open #{repolink}`
+def GetOpenCommand()
+  if RUBY_PLATFORM.include?("darwin") then 
+    return "open"
+  else 
+    return "xdg-open"
+  end
+end
+
+`#{GetOpenCommand()} #{repolink}`
