@@ -1,0 +1,4 @@
+# rename 'system/keys.zsh.EXAMPLE' to 'system/keys.zsh'
+# 'system/keys.zsh' won't be checked into git
+
+export MY_VAR=111111111
