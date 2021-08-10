@@ -70,6 +70,7 @@ alias ctrlc='pbcopy'
 alias ctrlv='pbpaste'
 alias ys='yarn start'
 alias yys='yarn && yarn start'
+alias history-grep="cat ~/.zsh_history | grep "
 
 # OS specific
 case "$OSTYPE" in
