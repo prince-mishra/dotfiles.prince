@@ -88,3 +88,4 @@ esac
 
 # work specific
 alias check="yarn lint:deps:fix && yarn lint:ts:changed:fix && yarn lint:css" 
+alias check-deps="yarn lint:deps:fix"
