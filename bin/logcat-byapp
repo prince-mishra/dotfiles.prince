@@ -1,0 +1,13 @@
+#!/bin/sh
+# Android Debugger logs, filter by the app name
+# 
+# From: https://stackoverflow.com/a/9869609/2419584 
+# 
+# Linux and OS X
+# Use ps/grep/cut to grab the PID, then grep for logcat 
+# entries with that PID. Here's the command I use:
+# 
+# Usage: logcat-byapp com.example.app
+
+APP_NAME="${1:-.}"
+adb logcat | grep -F "`adb shell ps | grep $APP_NAME  | tr -s [:space:] ' ' | cut -d' ' -f2`"
