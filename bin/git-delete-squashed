@@ -1,0 +1,26 @@
+#!/bin/zsh
+#
+# Delete all local branches that have been squash-merged into master
+#
+#  - Based on: https://stackoverflow.com/a/56026209/2419584
+
+BRANCHES=();
+echo 'Finding merged branches'
+git checkout -q master
+git for-each-ref refs/heads/ "--format=%(refname:short)" | while read branch; do mergeBase=$(git merge-base master $branch) && [[ $(git cherry master $(git commit-tree $(git rev-parse "$branch^{tree}") -p $mergeBase -m _)) == "-"* ]] && echo "$branch is merged into master and can be deleted" && BRANCHES+=($branch); done
+
+echo ''
+echo 'Panning to delete squash-merged branches:'
+echo ''
+printf '%s\n' $BRANCHES
+echo ''
+printf 'Delete merged branches locally? Press [Enter] to continue...'
+read _
+
+command="git branch -D $BRANCHES"
+echo ''
+echo 'Running command: '$command
+echo ''
+eval $command
+echo ''
+echo 'Done!'
