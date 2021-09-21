@@ -89,3 +89,5 @@ esac
 # work specific
 alias check="yarn lint:deps:fix && yarn lint:ts:changed:fix && yarn lint:css" 
 alias check-deps="yarn lint:deps:fix"
+# From: https://github.com/puppeteer/puppeteer/issues/4752
+alias fix-chromium-permissions-locally="sudo codesign --force --deep --sign - ./node_modules/puppeteer/.local-chromium/mac-*/chrome-mac/Chromium.app"
