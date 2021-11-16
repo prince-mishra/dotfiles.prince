@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+# Retry a command.
+function retry() {
+  echo "Running \"${@:1}\" with auto-retry..."
+
+  while ! ${@:1} ; do
+    echo "Trying again..."
+  done
+}

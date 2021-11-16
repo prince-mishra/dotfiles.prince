@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+# Retry a command with backoff.
+function retry() {
+  interval=1
+  echo "Running \"${@:1}\" until success with exponential backoff..."
+
+  while ! ${@:1} ; do
+    echo "Failed! Trying again in $interval second(s)."
+    sleep $interval
+    interval=$((interval+interval))
+    echo "OK, wish me luck..."
+  done
+}
