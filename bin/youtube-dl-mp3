@@ -1,0 +1,9 @@
+#!/bin/sh
+#
+# Downloads the video as an mp3
+#
+# youtube-dl, which is awesome:
+#   https://rg3.github.io/youtube-dl/
+#
+
+youtube-dl --extract-audio --audio-format mp3 "$1"
