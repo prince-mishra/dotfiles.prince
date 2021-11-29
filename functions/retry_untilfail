@@ -7,7 +7,7 @@ function retry_untilfail() {
 
   while ${@:1} ; do
     iteration=$((iteration+1))
-    echo "waiting 1s then trying again (iteration=$iteration)..."
+    echo "didn't fail, so waiting 1s then trying again (iteration=$iteration)..."
     sleep 1
   done
 }
