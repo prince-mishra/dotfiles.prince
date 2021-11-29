@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 # Retry a command with backoff.
-function retry() {
+function retry_backoff() {
   interval=1
   echo "Running \"${@:1}\" until success with exponential backoff..."
 
