@@ -3,11 +3,13 @@
 # Retry a command with backoff.
 function retry_backoff() {
   interval=1
+  iteration=1
   echo "Running \"${@:1}\" until success with exponential backoff..."
 
   while ! ${@:1} ; do
-    echo "Failed! Trying again in $interval second(s)."
+    echo "Failed! Trying again in $interval second(s) (iteration=$iteration)."
     sleep $interval
+    iteration=$((iteration+1))
     interval=$((interval+interval))
     echo "OK, wish me luck..."
   done

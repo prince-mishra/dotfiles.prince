@@ -3,9 +3,11 @@
 # Retry a command.
 function retry() {
   echo "Running \"${@:1}\" with auto-retry..."
+  iteration=1
 
   while ! ${@:1} ; do
-    echo "waiting 1s then trying again..."
+    iteration=$((iteration+1))
+    echo "waiting 1s then trying again (iteration=$iteration)..."
     sleep 1
   done
 }
