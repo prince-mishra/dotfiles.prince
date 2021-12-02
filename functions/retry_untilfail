@@ -10,4 +10,6 @@ function retry_untilfail() {
     echo "didn't fail, so waiting 1s then trying again (iteration=$iteration)..."
     sleep 1
   done
+
+  echo "Command failed on iteration=$iteration"
 }
