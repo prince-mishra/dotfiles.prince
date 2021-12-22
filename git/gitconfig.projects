@@ -1,5 +1,3 @@
 [user]
         name = Ben Winding
         email = hello@benwinding.com
-[credential]
-        helper = GIT_CREDENTIAL_HELPER

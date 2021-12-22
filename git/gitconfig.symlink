@@ -1,9 +1,8 @@
 # Local/private config goes in the include
 [include]
         path = ~/.gitconfig.local
-[user]
-        name = Ben Winding
-        email = hello@benwinding.com
+[includeIf "gitdir:~/projects/"]
+        path = ~/.dotfiles/git/gitconfig.projects
 [core]
         editor = nano
 [apply]
