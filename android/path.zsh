@@ -5,7 +5,8 @@
 case "$OSTYPE" in
 # Mac
 darwin*)
-  export JAVA_HOME=$(/usr/libexec/java_home -v1.8)
+  # Turned off as it breaks somethings...
+  # export JAVA_HOME=$(/usr/libexec/java_home -v1.8)
   export ANDROID_HOME=$HOME/Library/Android/sdk
   export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
   ;;
