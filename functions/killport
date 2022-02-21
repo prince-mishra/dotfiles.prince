@@ -3,5 +3,16 @@
 # Kills a process running on a specified tcp port
 killport() {
   echo "Killing process on port: $1"
-  fuser -n tcp -k $1;
+
+  # OS specific
+  case "$OSTYPE" in
+  # Mac
+  darwin*)
+    kill -9 $(lsof -ti:$1)
+    ;;
+  # Linux
+  linux*)
+    fuser -n tcp -k $1;
+    ;;
+  esac
 }
