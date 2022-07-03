@@ -25,3 +25,6 @@ alias ge='git-edit-new'
 
 # Make a branch on the upstream origin with same name as current branch
 alias git-push-set-upstream='git push --set-upstream origin $(git branch --show-current)'
+
+# Push all branches to origin!
+alias git-push-all='git push --all'
