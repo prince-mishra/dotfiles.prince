@@ -92,5 +92,3 @@ alias check-deps="yarn lint:deps:fix"
 # From: https://github.com/puppeteer/puppeteer/issues/4752
 alias fix-chromium-permissions-locally="sudo codesign --force --deep --sign - ./node_modules/puppeteer/.local-chromium/mac-*/chrome-mac/Chromium.app"
 alias fix-chromium-permissions="sudo codesign --force --deep --sign - ~/Library/Caches/ms-playwright/chromium-*/chrome-mac/Chromium.app"
-
-alias git-clean-squashed="git checkout master && git pull && gf && git-delete-squashed"

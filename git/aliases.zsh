@@ -28,3 +28,6 @@ alias git-push-set-upstream='git push --set-upstream origin $(git branch --show-
 
 # Push all branches to origin!
 alias git-push-all='git push --all'
+
+# Delete all squashed branches locally
+alias git-clean-squashed="git checkout master && git pull && gf && git-delete-squashed"
