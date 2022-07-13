@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+# Allows you to search all of your commands history
+# Usage:
+# 
+#  history-grep npm run
+#
+#  ^ will search all command history for "npm run"
+
+history-grep() {
+  line_length_default="200"
+  : "${LINE_LENGTH:=$line_length_default}"
+  # ^ Assigns default value if LINE_LENGTH is not defined in environment
+  cat ~/.zsh_history | grep "$@" | cut -b 1-$LINE_LENGTH
+}
