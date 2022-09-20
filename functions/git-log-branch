@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+# Gets git log, for current branch only (no merge commits, only this author)
+git-log-branch() {
+  AUTHOR=`git config user.email`
+  git log --no-merges --max-count=15 --pretty="format:%C(dim green) %<(9,trunc)%ar %C(bold magenta)%h %C(bold green)%<(12,trunc)%an %C(bold yellow)%<(113,trunc)%s" --committer="$AUTHOR"
+}
