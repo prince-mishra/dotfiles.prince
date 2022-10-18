@@ -1,30 +1,36 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env sh
 
 # Opens the current github repository in the default browser
 
-remotes = `git remote`
-hasNoRemotes = remotes.size < 2
-if hasNoRemotes then 
-  print("No git remote found, please set 'origin' remote");
-  return
-end
-repolink = `git remote get-url origin`
-print("     Found link: " + repolink);
-if repolink.include?("git@github.com:") then 
+REMOTES=`git remote show`
+if [ -z "$REMOTES" ]
+then
+  echo "No git remote found, please set 'origin' remote"
+  exit 1;
+fi
+
+REPOLINK=`git remote get-url origin`
+echo "     Found link: $REPOLINK"
+
+HAS_SSH_PREFIX=$(echo $REPOLINK | grep "git@github.com:")
+if [ "$HAS_SSH_PREFIX" ]
+then 
+  echo "                  ^ has ssh prefix (converting to https link)"
   # Converts from ssh format to https format if necessary
+  REPOLINK=$(echo $REPOLINK | sed "s/git\@github\.com\:/https:\/\/github\.com\//");
+else
+  echo "                  ^ has http prefix"
+fi
+echo "Opening webpage: $REPOLINK"
 
-  # git@github.com:benwinding/dotfiles
-  # https://github.com/benwinding/dotfiles
-  repolink = repolink.gsub("git@github.com:", "https://github.com/")
-end
-print("Opening webpage: " + repolink);
-
-def GetOpenCommand()
-  if RUBY_PLATFORM.include?("darwin") then 
-    return "open"
-  else 
-    return "xdg-open"
-  end
-end
-
-`#{GetOpenCommand()} #{repolink}`
+# OS specific
+case "$OSTYPE" in
+# Mac
+darwin*)
+  open $REPOLINK;
+  ;;
+# Linux
+linux*)
+  xdg-open $REPOLINK;
+  ;;
+esac
