@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+# Kills a process running on a specified tcp port
+notify-os() {
+  echo "🔔 Displaying OS Notification 🔔"
+  echo "   → with text: '$1'"
+
+  # OS specific
+  case "$OSTYPE" in
+  # Mac
+  darwin*)
+    osascript -e "display notification \"$1\" sound name \"Boop\""
+    ;;
+  # Linux
+  linux*)
+    notify-send --urgency=low -i "$($1)"
+    ;;
+  esac
+}
