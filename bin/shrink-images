@@ -1,5 +1,7 @@
 #!/bin/sh
 
+# Gets all images in folder, outputs "shrinked" images
+
 initial_folder="$1"
 RED='\033[0;31m'
 
