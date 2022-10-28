@@ -1,0 +1,39 @@
+#!/usr/bin/env sh
+
+# Opens the current git repo in Github, and 
+# Then you can easily find a relevant PR 👌
+
+REMOTES=`git remote show`
+if [ -z "$REMOTES" ]
+then
+  echo "No git remote found, please set 'origin' remote"
+  exit 1;
+fi
+
+REPOLINK=`git remote get-url origin`
+echo "     Found link: $REPOLINK"
+
+HAS_SSH_PREFIX=$(echo $REPOLINK | grep "git@github.com:")
+if [ "$HAS_SSH_PREFIX" ]
+then 
+  echo "                  ^ has ssh prefix (converting to https link)"
+  # Converts from ssh format to https format if necessary
+  REPOLINK=$(echo $REPOLINK | sed "s/git\@github\.com\:/https:\/\/github\.com\//");
+else
+  echo "                  ^ has http prefix"
+fi
+BRANCH_NAME=`git symbolic-ref --short HEAD`
+BRANCHLINK=$REPOLINK/tree/$BRANCH_NAME
+echo "Opening webpage: $BRANCHLINK"
+
+# OS specific
+case "$OSTYPE" in
+# Mac
+darwin*)
+  open $BRANCHLINK;
+  ;;
+# Linux
+linux*)
+  xdg-open $BRANCHLINK;
+  ;;
+esac
