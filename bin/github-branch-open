@@ -13,12 +13,20 @@ fi
 REPOLINK=`git remote get-url origin`
 echo "     Found link: $REPOLINK"
 
-HAS_SSH_PREFIX=$(echo $REPOLINK | grep "git@github.com:")
+HAS_DOT_GIT_SUFFIX=$(echo $REPOLINK | grep "\.git$")
+if [ "$HAS_DOT_GIT_SUFFIX" ]
+then 
+  echo "                  ^ has .git suffix"
+  REPOLINK=$(echo $REPOLINK | sed 's/\(.*\)\.git$/\1/');
+  echo "   Without .git: $REPOLINK"
+fi
+
+HAS_SSH_PREFIX=$(echo $REPOLINK | grep "@github.com:")
 if [ "$HAS_SSH_PREFIX" ]
 then 
   echo "                  ^ has ssh prefix (converting to https link)"
-  # Converts from ssh format to https format if necessary
-  REPOLINK=$(echo $REPOLINK | sed "s/git\@github\.com\:/https:\/\/github\.com\//");
+  # Strips the ssh git@github.com and convert to http link
+  REPOLINK=$(echo $REPOLINK | sed 's/\(.*\)\@github\.com\:\(.*\)/https\:\/\/github\.com\/\2/');
 else
   echo "                  ^ has http prefix"
 fi
