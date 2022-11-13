@@ -1,3 +1,7 @@
+## --- Performance Debugging ---
+# timer_start=$(perl -MTime::HiRes=time -e 'printf "%.9f\n", time')
+# zmodload zsh/zprof
+
 # shortcut to this dotfiles path is $ZSH
 export ZSH=$HOME/.dotfiles
 
@@ -52,3 +56,13 @@ export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
+
+## --- Performance Debugging ---
+# zprof
+
+# timer_end=$(perl -MTime::HiRes=time -e 'printf "%.9f\n", time')
+# duration_s=$(echo "$timer_end - $timer_start" | bc)
+# duration_ms=$(echo "$duration_s * 1000" | bc)
+
+# LC_NUMERIC=C printf "Total runtime: %f ms\n" $duration_ms
+## --- Performance Debugging ---
