@@ -1,3 +1,4 @@
+#!/bin/zsh
 ## --- Performance Debugging ---
 # timer_start=$(perl -MTime::HiRes=time -e 'printf "%.9f\n", time')
 # zmodload zsh/zprof
@@ -52,6 +53,8 @@ zle -N up-line-or-beginning-search
 zle -N down-line-or-beginning-search
 bindkey "^[[A" up-line-or-beginning-search # Up
 bindkey "^[[B" down-line-or-beginning-search # Down
+
+# Yarn path
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
