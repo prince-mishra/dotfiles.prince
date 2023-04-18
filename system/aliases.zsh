@@ -85,6 +85,9 @@ linux*)
   ;;
 esac
 
+# youtube-dl -> yt-dlp
+alias youtube-dl='yt-dlp'
+
 # work specific
 alias check="yarn lint:deps:fix && yarn lint:ts:changed:fix && yarn lint:css" 
 alias check-deps="yarn lint:deps:fix"

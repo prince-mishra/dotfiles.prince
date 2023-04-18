@@ -6,4 +6,4 @@
 #   https://rg3.github.io/youtube-dl/
 #
 
-cd ~/Desktop && youtube-dl "$1"
+cd ~/Desktop && yt-dlp "$1"
