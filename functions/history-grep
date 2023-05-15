@@ -11,5 +11,23 @@ history-grep() {
   line_length_default="200"
   : "${LINE_LENGTH:=$line_length_default}"
   # ^ Assigns default value if LINE_LENGTH is not defined in environment
-  cat ~/.zsh_history | grep "$@" | cut -b 1-$LINE_LENGTH
+  found_lines=$(cat ~/.zsh_history | grep "$@" | cut -b 1-$LINE_LENGTH)
+  while IFS= read -r line; do
+    timestamp=$(echo "$line" | cut -d ':' -f 2)
+    cmd=$(echo "$line" | cut -d ';' -f 2)
+
+    # OS specific
+    case "$OSTYPE" in
+    # Mac
+    darwin*)
+      human_date=$(date -r "$timestamp" '+%Y-%m-%d %H:%M:%S')
+      ;;
+    # Linux
+    linux*)
+      human_date=$(date -d "@$timestamp" '+%Y-%m-%d %H:%M:%S')
+      ;;
+    esac
+
+    echo "<$human_date> $cmd"
+  done <<< "$found_lines"
 }
