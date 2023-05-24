@@ -20,7 +20,7 @@ save_as_ext="$EXT"
 if [ ! -z "$save_as_ext" ]; then 
     echo ""
 else
-    save_as_ext=".png"
+    save_as_ext=".jpg"
 fi
 
 width=$MAX_WIDTH
@@ -32,7 +32,7 @@ else
 fi
 
 echo "Using Directory: $initial_folder"
-echo "Using extension: $save_as_ext $GREY(change via \$EXT=.png)$RESET"
+echo "Using extension: $save_as_ext $GREY(change via \$EXT=.jpg)$RESET"
 echo "Using max_width: $width $GREY(change by using \$MAX_WIDTH=500)$RESET"
 
 resized_folder_name="_resized"
