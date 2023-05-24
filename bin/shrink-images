@@ -3,13 +3,24 @@
 # Gets all images in folder, outputs "shrinked" images
 
 initial_folder="$1"
+# Terminal colors
 RED='\033[0;31m'
+GREY='\033[0;90m'
+RESET='\033[0m'
 
 if [ ! -z "$initial_folder" ]; then
     echo ""
 else
     printf "${RED} Needs folder path!\n"
     exit 1
+fi
+
+save_as_ext="$EXT"
+
+if [ ! -z "$save_as_ext" ]; then 
+    echo ""
+else
+    save_as_ext=".png"
 fi
 
 width=$MAX_WIDTH
@@ -21,18 +32,35 @@ else
 fi
 
 echo "Using Directory: $initial_folder"
-echo "Using max_width: $width (change by using \$MAX_WIDTH=500)"
+echo "Using extension: $save_as_ext $GREY(change via \$EXT=.png)$RESET"
+echo "Using max_width: $width $GREY(change by using \$MAX_WIDTH=500)$RESET"
 
 resized_folder_name="_resized"
+image_exts="jpg|gif|png|jpeg|HEIC"
+all_images=$(find -E $initial_folder -iregex ".*\.($image_exts)")
+all_images_count=$(echo "$all_images" | sed '/^\s*$/d' | wc -l | sed 's/^[[:space:]]*//')
 
-all_images=$(find -E $initial_folder -iregex ".*\.(jpg|gif|png|jpeg)")
+echo "Found '$all_images_count' images, matching '$image_exts' extension"
+echo "-------------------------"
+
+if [ "$all_images_count" -lt 1 ]; then
+    echo ">> Error: didn't find any images..."
+    exit 0;
+fi
+
+exit_loop() {
+    echo "Exiting..."
+    exit 0
+}
+trap exit_loop INT
 
 while read -r image_full_path; do
-    filename=$(basename "$image_full_path");
+    filename_with_ext=$(basename "$image_full_path")
+    filename_without_ext="${filename_with_ext%.*}"
     source_folder=$(dirname "$image_full_path");
 
     destination_folder=$source_folder"/"$resized_folder_name"/";
-    destination_full_path=$destination_folder$filename;
+    destination_full_path=$destination_folder$filename_without_ext$save_as_ext;
 
     if [ "$(basename "$source_folder")" = "$resized_folder_name" ]; then 
         continue
