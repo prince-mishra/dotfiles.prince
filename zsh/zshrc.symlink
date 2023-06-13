@@ -60,3 +60,5 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 # LC_NUMERIC=C printf "Total runtime: %f ms\n" $duration_ms
 ## --- Performance Debugging ---
+
+if [ -e /Users/benw/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/benw/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
