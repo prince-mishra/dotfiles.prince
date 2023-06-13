@@ -31,3 +31,6 @@ alias git-push-all='git push --all'
 
 # Delete all squashed branches locally
 alias git-clean-squashed="git checkout master && git pull && gf && git-delete-squashed"
+
+# Shortcut for creating a PR on github, depends on other functions in this repo
+alias gppr="git-push-set-upstream && github-branch-open-pr"
