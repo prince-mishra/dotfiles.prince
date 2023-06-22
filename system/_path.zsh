@@ -5,3 +5,6 @@ export PATH=$PATH:~/anaconda3/bin
 export PATH=$PATH:~/programs
 export PATH=$PATH:~/packages
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
+
+# Links grep from "brew install grep"
+export PATH=$PATH:/opt/homebrew/opt/grep/libexec/gnubin
