@@ -8,3 +8,6 @@ export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
 # Links grep from "brew install grep"
 export PATH=$PATH:/opt/homebrew/opt/grep/libexec/gnubin
+
+# NIX
+export PATH=$PATH:/nix/var/nix/profiles/default/bin
