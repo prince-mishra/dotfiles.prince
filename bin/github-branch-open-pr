@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 # Opens the current git repo in Github, and 
 # Then you can easily find a relevant PR 👌

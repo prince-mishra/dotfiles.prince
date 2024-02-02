@@ -1,3 +1,5 @@
+#!/usr/bin/env zsh
+
 # for ZSH
 case "$OSTYPE" in
 # Mac

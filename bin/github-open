@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env zsh
 
 # Opens the current github repository in the default browser
 
@@ -32,14 +32,18 @@ fi
 
 echo "Opening webpage: $REPOLINK"
 
+GREY='\033[0;90m'
+
 # OS specific
 case "$OSTYPE" in
 # Mac
 darwin*)
+  echo "$GREY on mac, using 'open' command"
   open $REPOLINK;
   ;;
 # Linux
 linux*)
+  echo "$GREY on linux, using 'xdg-open' command"
   xdg-open $REPOLINK;
   ;;
 esac

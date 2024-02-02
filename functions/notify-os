@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 # Kills a process running on a specified tcp port
 notify-os() {
