@@ -6,8 +6,17 @@ export PATH=$PATH:~/programs
 export PATH=$PATH:~/packages
 export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
-# Links grep from "brew install grep"
-export PATH=$PATH:/opt/homebrew/opt/grep/libexec/gnubin
+# --- HomeBrew nonsense
+case "$OSTYPE" in
+# Mac
+darwin*)
+  # Links grep from "brew install grep"
+  export PATH=$PATH:/opt/homebrew/opt/grep/libexec/gnubin
+  # So c++ can see headers
+  export CPATH=/opt/homebrew/include
+  export LIBRARY_PATH=/opt/homebrew/lib
+  ;;
+esac
 
 # NIX
 export PATH=$PATH:/nix/var/nix/profiles/default/bin
