@@ -1,0 +1,18 @@
+#!/usr/bin/env zsh
+
+# Opens file explorer on Mac/Linux
+
+# Use argument or current directory
+dir_to_open=${1:-$(pwd)}
+
+# OS specific
+case "$OSTYPE" in
+# Mac
+darwin*)
+  open $dir_to_open
+  ;;
+# Linux
+linux*)
+  xdg-open $dir_to_open
+  ;;
+esac
