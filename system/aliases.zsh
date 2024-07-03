@@ -76,12 +76,10 @@ case "$OSTYPE" in
 # Mac
 darwin*)
   alias o='open'
-  alias files='open ./'
   ;;
 # Linux
 linux*)
   alias o='xdg-open'
-  alias files='nautilus ./'
   alias pbcopy='xclip -selection clipboard'
   alias pbpaste='xclip -selection clipboard -o'
   ;;
