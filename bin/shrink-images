@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env zsh
 
 # Gets all images in folder, outputs "shrinked" images
 
@@ -37,7 +37,14 @@ echo "Using max_width: $width $GREY(change by using \$MAX_WIDTH=500)$RESET"
 
 resized_folder_name="_resized"
 image_exts="jpg|gif|png|jpeg|HEIC"
-all_images=$(find -E $initial_folder -iregex ".*\.($image_exts)")
+# Detect if we're on macOS or Linux
+if [[ "$(uname)" == "Darwin" ]]; then
+  # macOS (BSD find supports -E)
+  all_images=$(find -E "$initial_folder" -iregex ".*\.($image_exts)")
+else
+  # Linux (use posix-extended for extended regex)
+  all_images=$(find "$initial_folder" -regextype posix-extended -iregex ".*\.($image_exts)")
+fi
 all_images_count=$(echo "$all_images" | sed '/^\s*$/d' | wc -l | sed 's/^[[:space:]]*//')
 
 echo "Found '$all_images_count' images, matching '$image_exts' extension"
