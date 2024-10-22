@@ -71,6 +71,9 @@ alias ctrlv='pbpaste'
 alias ys='yarn start'
 alias yys='yarn && yarn start'
 
+# Fix paste, sometimes seeing ^[[200~
+unset zle_bracketed_paste
+
 # OS specific
 case "$OSTYPE" in
 # Mac
