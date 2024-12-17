@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+COMMIT_HASH=$1
+BRANCH=$2
+
+# Validate input
+if [[ -z "$COMMIT_HASH" || -z "$BRANCH" ]]; then
+  echo "Usage: $0 <commit-hash> <branch>"
+  exit 1
+fi
+
+git merge-base --is-ancestor $COMMIT_HASH $BRANCH && \
+  echo "✅ Commit $COMMIT_HASH is in branch: $BRANCH" || \
+  echo "❌ Commit $COMMIT_HASH is not in branch: $BRANCH"
