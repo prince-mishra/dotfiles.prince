@@ -1,6 +1,13 @@
 # Prince's Dotfiles
 Forking Ben's fork of Holman's fork for my little scripts. OSS is fun!
 
+
+```sh
+git clone https://github.com/prince-mishra/dotfiles.prince.git ~/.dotfiles
+cd ~/.dotfiles
+script/bootstrap
+```
+
 # (original Ben's README)
 
 # Ben's Dotfiles
