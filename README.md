@@ -1,9 +1,13 @@
+# Prince's Dotfiles
+Forking Ben's fork of Holman's fork for my little scripts. OSS is fun!
+
+# (original Ben's README)
+
 # Ben's Dotfiles
 
 It's been a big productivity improvement to have my own little scripts which make things easier in my system. Thanks to [Zach Holman](https://github.com/holman/dotfiles) for releasing his forkable dotfiles!
 
 I sync this repo accross all my computer's which all run:
-
 - Ubuntu 19.10 (64bit)
 - The ZSH shell
 
