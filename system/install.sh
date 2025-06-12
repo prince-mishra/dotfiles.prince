@@ -5,7 +5,6 @@ binaries=(zsh git curl autojump wget vim)
 packages=(fonts-powerline)
 
 echo "Installing dependencies"
-sudo apt update
 # Check and install missing binaries
 for bin in "${binaries[@]}"; do
     if ! command -v "$bin" >/dev/null 2>&1; then
