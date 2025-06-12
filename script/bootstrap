@@ -27,6 +27,11 @@ fail () {
   exit
 }
 
+update_submodules() {
+  echo "Updating submodules..."
+  git submodule update --init --recursive
+}
+
 setup_gitconfig () {
   if ! [ -f git/gitconfig.local.symlink ]
   then
@@ -108,8 +113,8 @@ link_file () {
 
     if [ "$backup" == "true" ]
     then
-      mv "$dst" "${dst}.backup"
-      success "moved $dst to ${dst}.backup"
+      mv "$dst" "${dst}.backup.$(date +%Y%m%d_%H%M%S)"
+      success "moved $dst to backup"
     fi
 
     if [ "$skip" == "true" ]
@@ -137,22 +142,48 @@ install_dotfiles () {
   done
 }
 
-setup_gitconfig
-install_dotfiles
+function install_mac_deps() {
 
-# If we're on a Mac, let's install and setup homebrew.
-if [ "$(uname -s)" == "Darwin" ]
-then
-  info "installing dependencies"
-  if source bin/dot | while read -r data; do info "$data"; done
-  then
-    success "dependencies installed"
-  else
-    fail "error installing dependencies"
-  fi
+if [ "$SHELL" = "/bin/zsh" ]; then
+  echo 'Success, zsh is already default terminal!'
+  exit 0
+fi;
+
+if ! [ -x "$(which zsh)" ]; then
+  echo "Problem, zsh not found! install using the following command"  
+  echo ''
+  echo 'sudo apt install zsh'
+  echo ''
+else
+  echo "Success, zsh is installed"
 fi
 
-./check-zsh
+echo 'Problem, run the following command to set zsh as default shell'
+echo ''
+echo 'sudo chsh -s /bin/zsh'
+
+
+}
+
+check_zsh() {
+  command -v zsh >/dev/null 2>&1 || {
+    echo "Install zsh: sudo apt install zsh"
+    return 1
+  }
+  
+  [ "$SHELL" = "$(which zsh)" ] || {
+    echo "Set default: chsh -s $(which zsh)"
+    return 1
+  }
+  
+  echo "zsh ready"
+}
+
+setup_gitconfig
+update_submodules
+install_dotfiles
+install_mac_deps
+check_zsh
 
 echo ''
 echo '  All installed!'

@@ -4,7 +4,7 @@
 # zmodload zsh/zprof
 
 # shortcut to this dotfiles path is $ZSH
-export ZSH=$HOME/.dotfiles
+export ZSH=$HOME/dotfiles
 
 # your project folder that we can `c [tab]` to
 export PROJECTS=~/Code
@@ -61,4 +61,5 @@ export PATH="$PATH:$HOME/.rvm/bin"
 # LC_NUMERIC=C printf "Total runtime: %f ms\n" $duration_ms
 ## --- Performance Debugging ---
 
-if [ -e /Users/benw/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/benw/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

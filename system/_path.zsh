@@ -5,7 +5,6 @@ export PATH=$PATH:~/.local/bin
 export PATH=$PATH:~/anaconda3/bin
 export PATH=$PATH:~/programs
 export PATH=$PATH:~/packages
-export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin
 
 # --- HomeBrew nonsense
 case "$OSTYPE" in
@@ -19,5 +18,3 @@ darwin*)
   ;;
 esac
 
-# NIX
-export PATH=$PATH:/nix/var/nix/profiles/default/bin
