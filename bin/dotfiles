@@ -17,7 +17,7 @@ displayUsageAndExit() {
 	exit
 }
 
-export ZSH=$HOME/.dotfiles
+export ZSH=$HOME/dotfiles
 
 updateDotFiles() {
 	echo "Updating dotfiles..."

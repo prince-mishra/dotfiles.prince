@@ -2,7 +2,7 @@
 [include]
         path = ~/.gitconfig.local
 [includeIf "gitdir:~/projects/"]
-        path = ~/.dotfiles/git/gitconfig.projects
+        path = ~/dotfiles/git/gitconfig.projects
 [core]
         editor = nano
 [apply]

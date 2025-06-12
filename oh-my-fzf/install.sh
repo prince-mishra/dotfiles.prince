@@ -17,6 +17,7 @@ fi
 
 # Install fzf from submodule
 echo "Installing fzf..."
+#"$(pwd)/fzf/install" --bin --key-bindings --completion --no-update-rc
 "$(pwd)/fzf/install" --bin --key-bindings --completion --no-update-rc
 
 echo "fzf installed"
