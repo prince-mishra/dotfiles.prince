@@ -1,1 +1,0 @@
-antigen init ~/.antigenrc  
