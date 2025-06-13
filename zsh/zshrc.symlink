@@ -35,6 +35,9 @@ do
   source $file
 done
 
+# Apply typeset -U
+typeset -U path
+
 # load everything but the path and completion files
 for file in ${${config_files:#*/path.zsh}:#*/completion.zsh}
 do
@@ -91,7 +94,37 @@ autoload -Uz _zinit
 zinit ice depth"1" # git clone depth
 zinit light romkatv/powerlevel10k
 zinit snippet OMZ::plugins/git/git.plugin.zsh
+zinit snippet OMZ::plugins/autojump/autojump.plugin.zsh
+zinit snippet OMZ::plugins/docker/docker.plugin.zsh
+
+# a plugin to remind me that I set up an alias for that command!
+zinit light djui/alias-tips
+
+# double esc to add sudo
+zinit light hcgraf/zsh-sudo
+# colored man pages
+zinit light ael-code/zsh-colored-man-pages
+
+
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-completions
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+
+
+
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'micromamba shell init' !!
+export MAMBA_EXE="${HOME}/.local/bin/micromamba";
+export MAMBA_ROOT_PREFIX="${HOME}/.local/share/mamba";
+__mamba_setup="$("$MAMBA_EXE" shell hook --shell zsh --root-prefix "$MAMBA_ROOT_PREFIX" 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__mamba_setup"
+else
+    alias micromamba="$MAMBA_EXE"  # Fallback on help from micromamba activate
+fi
+unset __mamba_setup
+# <<< mamba initialize <<<
