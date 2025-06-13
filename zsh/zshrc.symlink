@@ -104,7 +104,7 @@ zinit light djui/alias-tips
 zinit light hcgraf/zsh-sudo
 # colored man pages
 zinit light ael-code/zsh-colored-man-pages
-
+zinit light Aloxaf/fzf-tab
 
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-autosuggestions
