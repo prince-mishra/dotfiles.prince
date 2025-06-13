@@ -13,4 +13,4 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Custom fzf options
-export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border --preview-window=right:60%'
+export FZF_DEFAULT_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}' --height 40% --layout=reverse --border --preview-window=right:60%"
