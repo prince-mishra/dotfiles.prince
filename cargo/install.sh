@@ -9,7 +9,7 @@ else
   echo "Cargo is already installed: $(cargo --version)"
 fi
 
-binaries=(exa bat ripgrep fd-find)
+binaries=(exa bat ripgrep fd-find just)
 
 echo "Installing rust CLIs"
 # Check and install missing binaries
