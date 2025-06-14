@@ -13,4 +13,14 @@ fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Custom fzf options
-export FZF_DEFAULT_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {}' --height 40% --layout=reverse --border --preview-window=right:60%"
+# Clean separation of concerns
+export FZF_DEFAULT_OPTS="--height 40% --layout=reverse --border"
+
+# File operations get file preview
+export FZF_CTRL_T_OPTS="--preview 'bat --style=numbers --color=always --line-range :500 {} 2>/dev/null || echo {}' --preview-window=right:60%"
+
+# History operations get no preview (cleaner)
+export FZF_CTRL_R_OPTS="--no-preview --exact"
+
+# Directory operations get directory preview
+export FZF_ALT_C_OPTS="--preview 'ls -la {}' --preview-window=right:60%"
