@@ -2,6 +2,14 @@
 
 set -euxo pipefail
 
+# Configuration
+FORCE_UPDATE=false
+
+# Parse simple arguments
+if [[ "${1:-}" == "--force" || "${1:-}" == "-f" ]]; then
+    FORCE_UPDATE=true
+fi
+
 
 function check_and_install_eget() {
     # Check if eget is already installed
@@ -60,6 +68,18 @@ function check_and_install_eget() {
 
 }
 
+function get_tool_name() {
+    local repo="$1"
+    local suffix="${repo##*/}"
+    
+    # Special cases where suffix doesn't match tool name
+    case "${repo,,}" in
+        "burntsushi/ripgrep") echo "rg" ;;
+        "clementtsang/bottom") echo "btm" ;;
+        *) echo "$suffix" ;;
+    esac
+}
+
 function install_tools() {
     # Check if eget is installed
     if ! command -v eget &> /dev/null; then
@@ -73,19 +93,38 @@ function install_tools() {
         ajeetdsouza/zoxide
         dandavison/delta
         stedolan/jq
-    )
+        muesli/duf
+        bootandy/dust
+        ducaale/xh
+        rs/curlie
+        eradman/entr
+        jesseduffield/lazydocker
+        bcicen/ctop
+        jesseduffield/lazygit
+        burntsushi/ripgrep
+        clementtsang/bottom
 
+    )
+    TMPDIR="eget-tmp"
+    mkdir -p ${TMPDIR}
     # Install each tool using eget
     for tool in "${tools[@]}"; do
+        tool_name=$(get_tool_name "$tool")
+        # Check if tool is already installed
+        if command -v "$tool_name" &> /dev/null && [[ "$FORCE_UPDATE" == "false" ]]; then
+            echo "✅ $tool_name already installed, skipping $tool"
+            continue
+        fi
         echo "Installing $tool..."
-        if eget "$tool"; then
+        if eget "$tool" --to=${TMPDIR}; then
             echo "✅ Successfully installed $tool"
         else
             echo "❌ Failed to install $tool"
         fi
     done
 
-    echo "All tools installed successfully!"
+    echo "All tools installed successfully to ${TMPDIR}!"
+    echo "Move them to your PATH or use them directly from ${TMPDIR}."
 }
 
 check_and_install_eget

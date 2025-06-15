@@ -1,3 +1,4 @@
 git/gitconfig.local.symlink
 system/keys.zsh
 cache/
+eget-tmp/
