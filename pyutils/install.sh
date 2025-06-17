@@ -12,6 +12,7 @@ micromamba install -y -n pyutils -c conda-forge \
     black \
     ruff \
     csvkit \
-    httpie
+    httpie \
+    cookiecutter
 
 
