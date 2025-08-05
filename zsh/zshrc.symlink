@@ -1,3 +1,4 @@
+#!/bin/zsh
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -5,7 +6,6 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-#!/bin/zsh
 #set -x
 ## --- Performance Debugging ---
 # timer_start=$(perl -MTime::HiRes=time -e 'printf "%.9f\n", time')
@@ -128,3 +128,5 @@ else
 fi
 unset __mamba_setup
 # <<< mamba initialize <<<
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
